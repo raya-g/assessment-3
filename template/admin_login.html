@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="D:\software assessment\homework-portal\static\admin_login.css">
+</head>
+<body>
+    <form id="adminLoginForm">
+        <label for="adminUsername">Username:</label>
+        <input type="text" id="adminUsername" name="adminUsername">
+        <label for="adminPassword">Password:</label>
+        <input type="password" id="adminPassword" name="adminPassword">
+        <button type="button" onclick="adminLogin()">Login</button>
+    </form>
+
+    <script>
+        function adminLogin() {
+            var enteredUsername = document.getElementById("adminUsername").value;
+            var enteredPassword = document.getElementById("adminPassword").value;
+
+            // Send credentials to Flask backend for authentication
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: enteredUsername, password: enteredPassword })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect or perform actions based on successful login
+                    window.location.href = '/admin/dashboard'; // Example redirect
+                } else {
+                    alert('Login failed. Please check your credentials.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

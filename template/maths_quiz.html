@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz 1</title>
+    <link rel="stylesheet" href="D:\software assessment\homework-portal\static\admin_panel.css">
+    <!-- Link to your CSS file -->
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Math Quiz 1</h1>
+    </header>
+
+    <div class="question">
+        <p>What is the sum of 2 + 2?</p>
+    </div>
+
+    <div class="answers">
+        <button class="answer" onclick="checkAnswer(4)">4</button>
+        <button class="answer" onclick="checkAnswer(3)">3</button>
+        <button class="answer" onclick="checkAnswer(5)">5</button>
+        <button class="answer" onclick="checkAnswer(6)">6</button>
+    </div>
+
+    <div class="footer">
+        <p><a href="#">Return to Student Portal</a></p>
+    </div>
+</div>
+
+<script>
+    function checkAnswer(selectedAnswer) {
+        // Example function to check the selected answer
+        const correctAnswer = 4; // Change this to the correct answer for each question
+        if (selectedAnswer === correctAnswer) {
+            alert('Correct!');
+        } else {
+            alert('Incorrect. Please try again.');
+        }
+    }
+</script>
+
+</body>
+</html>

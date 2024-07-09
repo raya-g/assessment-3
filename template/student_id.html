@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do your Homework!</title>
+    <link rel="stylesheet" href="D:\software assessment\homework-portal\static\student_id.css">
+</head>
+<body>
+    <form id="passwordForm">
+        <label for="password">Student ID:</label>
+        <input type="password" id="password" name="password">
+        <button type="button" onclick="checkPassword()">Go to Quiz Page</button>
+    </form>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home_site.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="student_id.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="footer">
+        <p>Contact me!: example@email.com</p>
+    </div>
+    <script>
+        function checkPassword() {
+            var enteredPassword = document.getElementById("password").value;
+            fetch('/api/check_password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ password: enteredPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'quiz_page.html';
+                } else {
+                    alert('Incorrect password. Please try again.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

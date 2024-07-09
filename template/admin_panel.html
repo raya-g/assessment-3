@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="D:\software assessment\homework-portal\static\admin_panel.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Panel</h1>
+        </header>
+        <div class="form-container">
+            <h2>Set Student ID and Assign Questions</h2>
+            <form id="studentIdForm">
+                <div class="form-group">
+                    <label for="student_id">Student ID:</label>
+                    <input type="text" id="student_id" name="student_id">
+                </div>
+                <div id="assignedQuestions">
+                    <!-- Assigned Questions will be dynamically added here -->
+                </div>
+                <button type="button" onclick="addQuestionField()">Add Question</button>
+                <button type="button" onclick="setStudentId()">Set Student ID and Assign Questions</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function addQuestionField() {
+            var container = document.getElementById('assignedQuestions');
+            var newQuestionDiv = document.createElement('div');
+            newQuestionDiv.classList.add('form-group');
+
+            var newQuestionLabel = document.createElement('label');
+            newQuestionLabel.textContent = 'Question:';
+            newQuestionDiv.appendChild(newQuestionLabel);
+
+            var newQuestionInput = document.createElement('input');
+            newQuestionInput.type = 'text';
+            newQuestionInput.name = 'assigned_question';
+            newQuestionInput.placeholder = 'Enter a question';
+            newQuestionDiv.appendChild(newQuestionInput);
+
+            var removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.type = 'button';
+            removeButton.classList.add('remove-question');
+            removeButton.addEventListener('click', function() {
+                container.removeChild(newQuestionDiv);
+            });
+            newQuestionDiv.appendChild(removeButton);
+
+            container.appendChild(newQuestionDiv);
+        }
+
+        function setStudentId() {
+            var studentId = document.getElementById("student_id").value;
+            var questions = [];
+
+            // Collect all assigned questions
+            var assignedQuestionInputs = document.getElementsByName('assigned_question');
+            assignedQuestionInputs.forEach(function(input) {
+                if (input.value.trim() !== '') {
+                    questions.push(input.value.trim());
+                }
+            });
+
+            // Send student ID and questions to backend
+            fetch('/api/set_student_id', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ student_id: studentId, questions: questions })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Student ID and questions assigned successfully.');
+                } else {
+                    alert('Failed to set student ID and assign questions.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
