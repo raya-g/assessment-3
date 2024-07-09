@@ -1,0 +1,131 @@
+/* Student_portal.css */
+body {
+    background-color: #F6ECC3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Times New Roman', sans-serif;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Header styles */
+header {
+    background-color: #DF8686;
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #DF8686;
+}
+
+/* Main content styles */
+.content-container {
+    flex-grow: 1;
+    padding: 100px 20px 20px; /* Adjust padding for fixed header */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+section ul li {
+    margin: 10px 0;
+}
+
+section ul li a {
+    text-decoration: none;
+    color: #DF8686;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+section ul li a:hover {
+    color: #BF6F6F;
+}
+
+section button {
+    background-color: #DF8686;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+section button:hover {
+    background-color: #BF6F6F;
+}
+
+/* Footer styles */
+footer {
+    background-color: #DF8686;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #FFD700;
+}
